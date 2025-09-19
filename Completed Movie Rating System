@@ -1,0 +1,142 @@
+import java.util.Scanner;
+
+public class MovieRatingSystem
+{
+    public static void main(String[] args) 
+    {
+        // variables
+        String userName; 
+        String  m1, m2, m3, m4, m5;
+        int m1Rate, m2Rate, m3Rate, m4Rate, m5Rate;
+        // scanner for user input
+
+        Scanner input = new Scanner(System.in);
+
+        // ask for user name
+        System.out.print("Enter Your name: ");
+        userName = input.nextLine();
+        // input name of 5 movies reciently watched 
+        System.out.println("Enter 5 movies you recently watched: ");
+        m1 = input.nextLine();
+        m2 = input.nextLine();
+        m3 = input.nextLine();
+        m4 = input.nextLine();
+        m5 = input.nextLine();
+
+        //rate each movie 1-10; use a loop to ensure valid ratings 1-10
+        // movie 1
+        System.out.print("Rate " + m1 + " 1-10: "); 
+        m1Rate = input.nextInt();
+        while (m1Rate < 1 || m1Rate > 10)
+        {
+	        System.out.println("Invalid rating. Please rate " + m1 + " 1-10: ");
+	        m1Rate = input.nextInt();
+        }
+        //movie 2
+        System.out.print("Rate " + m2 + " 1-10: "); 
+        m2Rate = input.nextInt();
+        while (m2Rate < 1 || m2Rate > 10)
+        {
+	        System.out.println("Invalid rating. Please rate " + m2 + " 1-10: ");
+	        m2Rate = input.nextInt();
+        }
+        //movie 3
+        System.out.print("Rate " + m3 + " 1-10: "); 
+        m3Rate = input.nextInt();
+        while (m3Rate < 1 || m3Rate > 10)
+        {
+	        System.out.println("Invalid rating. Please rate " + m3 + " 1-10: ");
+	        m3Rate = input.nextInt();
+        }
+        // movie 4
+        System.out.print("Rate " + m4 + " 1-10: "); 
+        m4Rate = input.nextInt();
+        while (m4Rate < 1 || m4Rate > 10)
+        {
+	        System.out.println("Invalid rating. Please rate " + m4 + " 1-10: ");
+	        m4Rate = input.nextInt();
+        }
+        //movie 5
+        System.out.print("Rate " + m5 + " 1-10: "); 
+        m5Rate = input.nextInt();
+        while (m5Rate < 1 || m5Rate > 10)
+        {
+	        System.out.println("Invalid rating. Please rate " + m5 + " 1-10: ");
+	        m5Rate = input.nextInt();
+        }
+
+        
+
+        
+
+        //store movies and ratings in parallel arrays
+        String[] movies = {m1, m2, m3, m4, m5};
+        int[] ratings = {m1Rate, m2Rate, m3Rate, m4Rate, m5Rate}; 
+
+        // compute avarage rating across all movies 
+         int  totalRating = m1Rate + m2Rate + m3Rate + m4Rate + m5Rate;
+         int avaerageRate = totalRating / 5;
+        // Display calculated avaerage to user 
+        System.out.println(userName + " your average rating is " + avaerageRate);
+
+        // Rating classification
+        if (avaerageRate > 8 || avaerageRate == 10 )
+            System.out.println("You are a cinephile!");
+        else if (avaerageRate > 6 || avaerageRate == 8)
+             System.out.println("You enjoy movies quite a bit.");
+        else if (avaerageRate > 4 || avaerageRate == 6)
+            System.out.println("You have mixed feelings about movies.");
+        else 
+            System.out.println("You are a tough critic");
+
+        // check for favorite movie
+           if(m1Rate == 10)
+            if (m2Rate == 10)
+                if(m3Rate == 10)
+                    if(m4Rate == 10)
+                        if(m5Rate == 10)
+                            System.out.println("Wow! You found a masterpiece.");
+            else if (m1Rate < 4)
+                    if(m2Rate < 4)
+                        if(m3Rate < 4)
+                            if(m4Rate < 4)
+                                if(m5Rate < 4)
+                                    System.out.println("That movie didn't impress you much.");
+                
+
+        //Consistent Ratings 
+
+        if (m1Rate >= 7 && m2Rate >= 7 && m3Rate >= 7 && m4Rate >= 7 && m5Rate >= 7)
+            System.out.println("You seem to enjoy most movies");
+        else if (m1Rate <= 3 || m2Rate <= 3 ||  m3Rate <= 3 || m4Rate <= 3 || m5Rate <= 3)
+            System.out.println("You have strong opinions on movies."); 
+        
+        // switch statement for genre prefrence
+        String genre;
+        Scanner genreInput = new Scanner(System.in);
+        System.out.println(userName + " What is your favorite genre?(Action, Comedy, Horror, Drama, or Sci-fi): ");
+        genre = genreInput.nextLine();
+        
+        genreInput.close();
+        input.close();
+
+        switch(genre)
+        {
+            case "Action" -> System.out.println("You love excitement and thrills!");
+            case "Comedy" -> System.out.println("You enjoy a good laugh.");
+            case "Horror" -> System.out.println("You have a taste for fear!");
+            case "Drama" -> System.out.println("You appreciate deep storytelling.");
+            case "Sci-fi" -> System.out.println("You love futuristic and imaginative worlds!");
+        }
+
+        // Movie recomendation using conditial operator
+        
+        String movieReco = genre.equals("Sci-fi") ? "You should watch Interstellar." : 
+                            genre.equals("Action")? "You should watch Mad Max: Fury Road." :
+                            genre.equals("Horror") ? "You should watch The Autopsy of Jane Doe." :
+                            genre.equals("Comedy") ? "You should watch Ace Ventura: Pet Detective." :
+                            genre.equals("Drama") ? "You should watch The Green Mile." : "Explore different genres.";
+        System.out.println(movieReco); 
+
+    }                       
+}
